@@ -307,11 +307,11 @@
                         dayNumberClass += ' text-white';
                     }
                 } else if (isWeekend) {
-                    cellClass += 'bg-slate-800/50 text-slate-300 border border-slate-600/50';
-                    dayNumberClass += ' text-slate-300';
-                } else {
-                    cellClass += 'bg-slate-800/30 text-slate-200 border border-slate-700/30 hover:bg-slate-700/50';
+                    cellClass += 'bg-slate-700/50 text-slate-200 border border-slate-600/50';
                     dayNumberClass += ' text-slate-200';
+                } else {
+                    cellClass += 'bg-slate-800/30 text-white border border-slate-700/30 hover:bg-slate-700/50';
+                    dayNumberClass += ' text-white';
                 }
 
                 const cell = document.createElement('div');
