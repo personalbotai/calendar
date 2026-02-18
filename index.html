@@ -5,12 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kalender Libur Nasional Indonesia 2026</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        .holiday { @apply bg-red-600 text-white font-semibold border-2 border-red-700; }
-        .shared-leave { @apply bg-orange-500 text-white font-semibold border-2 border-orange-600; }
-        .weekend { @apply bg-red-50 text-red-700 font-medium; }
-        .weekend .day-number { @apply text-red-700; }
-    </style>
+
 </head>
 <body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen p-4">
     <div class="max-w-6xl mx-auto">
@@ -164,19 +159,28 @@
                 const holiday = holidayMap[dateStr];
 
                 let cellClass = 'h-24 p-2 border border-gray-200 relative ';
+                let dayNumberClass = 'day-number font-bold text-lg';
+                
                 if (holiday) {
-                    cellClass += holiday.type === 'national' ? 'holiday' : 'shared-leave';
+                    if (holiday.type === 'national') {
+                        cellClass += 'bg-red-600 text-white font-semibold border-2 border-red-700';
+                        dayNumberClass += ' text-white';
+                    } else {
+                        cellClass += 'bg-orange-500 text-white font-semibold border-2 border-orange-600';
+                        dayNumberClass += ' text-white';
+                    }
                 } else if (isWeekend) {
-                    cellClass += 'weekend';
+                    cellClass += 'bg-red-50 text-red-700 font-medium';
+                    dayNumberClass += ' text-red-700';
                 } else {
-                    cellClass += 'bg-white';
+                    cellClass += 'bg-white text-gray-800';
                 }
 
                 const cell = document.createElement('div');
                 cell.className = cellClass;
 
                 const dayNum = document.createElement('div');
-                dayNum.className = 'day-number font-bold text-lg';
+                dayNum.className = dayNumberClass;
                 dayNum.textContent = day;
                 cell.appendChild(dayNum);
 
