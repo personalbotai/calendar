@@ -38,10 +38,10 @@
         body {
             font-family: 'Inter', sans-serif;
         }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+        .card {
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
         }
         .calendar-day {
             transition: all 0.2s ease;
@@ -49,7 +49,7 @@
         }
         .calendar-day:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
             z-index: 10;
             position: relative;
         }
@@ -74,12 +74,6 @@
     </style>
 </head>
 <body class="bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 min-h-screen">
-    <!-- Animated background -->
-    <div class="fixed inset-0 overflow-hidden pointer-events-none">
-        <div class="absolute -top-40 -right-40 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
-        <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
-    </div>
-
     <div class="relative max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8">
         <!-- Header -->
         <header class="text-center mb-8 sm:mb-12">
@@ -98,7 +92,7 @@
             <!-- Left Column: Calendar -->
             <div class="lg:col-span-2 space-y-6">
                 <!-- Navigation -->
-                <div class="glass-card rounded-2xl shadow-2xl p-4 sm:p-6">
+                <div class="card rounded-2xl shadow-2xl p-4 sm:p-6">
                     <div class="flex items-center justify-between gap-4">
                         <button id="prevMonth" class="nav-btn flex items-center gap-2 px-4 py-2.5 sm:px-6 sm:py-3 bg-gradient-to-r from-primary-500 to-primary-600 text-white rounded-xl font-medium shadow-lg hover:from-primary-600 hover:to-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 focus:ring-offset-slate-900 transition-all">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -107,7 +101,7 @@
                             <span class="hidden sm:inline">Sebelumnya</span>
                         </button>
                         
-                        <h2 id="currentMonth" class="text-xl sm:text-2xl font-bold text-white text-center flex-1"></h2>
+                        <h2 id="currentMonth" class="text-xl sm:text-2xl font-bold text-slate-900 text-center flex-1"></h2>
                         
                         <button id="nextMonth" class="nav-btn flex items-center gap-2 px-4 py-2.5 sm:px-6 sm:py-3 bg-gradient-to-r from-primary-500 to-primary-600 text-white rounded-xl font-medium shadow-lg hover:from-primary-600 hover:to-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 focus:ring-offset-slate-900 transition-all">
                             <span class="hidden sm:inline">Selanjutnya</span>
@@ -119,7 +113,7 @@
                 </div>
 
                 <!-- Calendar Grid -->
-                <div class="glass-card rounded-2xl shadow-2xl overflow-hidden">
+                <div class="card rounded-2xl shadow-2xl overflow-hidden">
                     <!-- Week headers -->
                     <div class="grid grid-cols-7 bg-gradient-to-r from-primary-600 to-primary-700 text-white text-center font-semibold py-3 sm:py-4 text-sm sm:text-base">
                         <div class="py-2">Sen</div>
@@ -135,9 +129,9 @@
                 </div>
 
                 <!-- Legend -->
-                <div class="glass-card rounded-2xl shadow-xl p-4 sm:p-6">
-                    <h3 class="font-bold text-white mb-4 text-lg flex items-center gap-2">
-                        <svg class="w-5 h-5 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="card rounded-2xl shadow-xl p-4 sm:p-6">
+                    <h3 class="font-bold text-slate-900 mb-4 text-lg flex items-center gap-2">
+                        <svg class="w-5 h-5 text-primary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                         </svg>
                         Keterangan
@@ -145,15 +139,15 @@
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                         <div class="flex items-center gap-3 p-3 bg-red-500/10 border border-red-500/20 rounded-xl">
                             <div class="w-8 h-8 bg-gradient-to-br from-red-500 to-red-600 rounded-lg shadow-md flex items-center justify-center text-white font-bold text-xs">L</div>
-                            <span class="text-white font-medium">Hari Libur Nasional</span>
+                            <span class="text-slate-900 font-medium">Hari Libur Nasional</span>
                         </div>
                         <div class="flex items-center gap-3 p-3 bg-orange-500/10 border border-orange-500/20 rounded-xl">
                             <div class="w-8 h-8 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg shadow-md flex items-center justify-center text-white font-bold text-xs">C</div>
-                            <span class="text-white font-medium">Cuti Bersama</span>
+                            <span class="text-slate-900 font-medium">Cuti Bersama</span>
                         </div>
-                        <div class="flex items-center gap-3 p-3 bg-slate-700/30 border border-slate-600/30 rounded-xl">
+                        <div class="flex items-center gap-3 p-3 bg-slate-100 border border-slate-200 rounded-xl">
                             <div class="w-8 h-8 bg-slate-200 border-2 border-slate-300 rounded-lg flex items-center justify-center text-slate-600 font-bold text-xs">A</div>
-                            <span class="text-white font-medium">Akhir Pekan</span>
+                            <span class="text-slate-900 font-medium">Akhir Pekan</span>
                         </div>
                     </div>
                 </div>
@@ -162,37 +156,37 @@
             <!-- Right Column: Stats & List -->
             <div class="space-y-6">
                 <!-- Stats Cards -->
-                <div class="glass-card rounded-2xl shadow-2xl p-6">
-                    <h3 class="font-bold text-white mb-6 text-lg flex items-center gap-2">
-                        <svg class="w-5 h-5 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="card rounded-2xl shadow-2xl p-6">
+                    <h3 class="font-bold text-slate-900 mb-6 text-lg flex items-center gap-2">
+                        <svg class="w-5 h-5 text-primary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
                         </svg>
                         Statistik 2026
                     </h3>
                     <div class="grid grid-cols-2 gap-4">
                         <div class="bg-gradient-to-br from-red-500/10 to-red-600/10 border border-red-500/20 rounded-xl p-4 text-center">
-                            <div class="text-3xl sm:text-4xl font-bold text-red-400" id="totalHolidays">0</div>
-                            <div class="text-xs sm:text-sm text-red-200 mt-1">Libur Nasional</div>
+                            <div class="text-3xl sm:text-4xl font-bold text-red-600" id="totalHolidays">0</div>
+                            <div class="text-xs sm:text-sm text-red-700 mt-1">Libur Nasional</div>
                         </div>
                         <div class="bg-gradient-to-br from-orange-500/10 to-orange-600/10 border border-orange-500/20 rounded-xl p-4 text-center">
-                            <div class="text-3xl sm:text-4xl font-bold text-orange-400" id="totalShared">0</div>
-                            <div class="text-xs sm:text-sm text-orange-200 mt-1">Cuti Bersama</div>
+                            <div class="text-3xl sm:text-4xl font-bold text-orange-600" id="totalShared">0</div>
+                            <div class="text-xs sm:text-sm text-orange-700 mt-1">Cuti Bersama</div>
                         </div>
                         <div class="bg-gradient-to-br from-green-500/10 to-green-600/10 border border-green-500/20 rounded-xl p-4 text-center">
-                            <div class="text-3xl sm:text-4xl font-bold text-green-400" id="totalWeekends">0</div>
-                            <div class="text-xs sm:text-sm text-green-200 mt-1">Akhir Pekan</div>
+                            <div class="text-3xl sm:text-4xl font-bold text-green-600" id="totalWeekends">0</div>
+                            <div class="text-xs sm:text-sm text-green-700 mt-1">Akhir Pekan</div>
                         </div>
                         <div class="bg-gradient-to-br from-purple-500/10 to-purple-600/10 border border-purple-500/20 rounded-xl p-4 text-center">
-                            <div class="text-3xl sm:text-4xl font-bold text-purple-400" id="longestBreak">0</div>
-                            <div class="text-xs sm:text-sm text-purple-200 mt-1">Libur Terpanjang</div>
+                            <div class="text-3xl sm:text-4xl font-bold text-purple-600" id="longestBreak">0</div>
+                            <div class="text-xs sm:text-sm text-purple-700 mt-1">Libur Terpanjang</div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Holiday List -->
-                <div class="glass-card rounded-2xl shadow-2xl p-6">
-                    <h3 class="font-bold text-white mb-4 text-lg flex items-center gap-2">
-                        <svg class="w-5 h-5 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="card rounded-2xl shadow-2xl p-6">
+                    <h3 class="font-bold text-slate-900 mb-4 text-lg flex items-center gap-2">
+                        <svg class="w-5 h-5 text-primary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                         </svg>
                         Daftar Hari Libur
@@ -203,7 +197,7 @@
         </div>
 
         <!-- Footer -->
-        <footer class="mt-12 text-center text-purple-300 text-sm opacity-80">
+        <footer class="mt-12 text-center text-white text-sm opacity-90">
             <p>© 2026 Kalender Libur Nasional Indonesia • Data berdasarkan SKB 3 Menteri</p>
         </footer>
     </div>
@@ -283,7 +277,7 @@
             // Add empty cells for days before first day (Monday start)
             for (let i = 1; i < startOffset; i++) {
                 const emptyCell = document.createElement('div');
-                emptyCell.className = 'h-24 bg-gray-50';
+                emptyCell.className = 'h-24 bg-slate-100';
                 grid.appendChild(emptyCell);
             }
 
@@ -295,23 +289,20 @@
                 const isWeekend = dayOfWeek === 0 || dayOfWeek === 6; // Sunday or Saturday
                 const holiday = holidayMap[dateStr];
 
-                let cellClass = 'calendar-day p-2 sm:p-3 border border-slate-700/50 rounded-lg relative overflow-hidden ';
-                let dayNumberClass = 'day-number font-bold text-lg sm:text-xl';
+                let cellClass = 'calendar-day p-2 sm:p-3 border border-slate-200 rounded-lg relative bg-white ';
+                let dayNumberClass = 'day-number font-bold text-lg sm:text-xl text-slate-900';
                 
                 if (holiday) {
                     if (holiday.type === 'national') {
                         cellClass += 'bg-gradient-to-br from-red-500 to-red-600 text-white shadow-lg shadow-red-900/30 border-2 border-red-400';
-                        dayNumberClass += ' text-white';
+                        dayNumberClass = 'day-number font-bold text-lg sm:text-xl text-white';
                     } else {
                         cellClass += 'bg-gradient-to-br from-orange-500 to-orange-600 text-white shadow-lg shadow-orange-900/30 border-2 border-orange-400';
-                        dayNumberClass += ' text-white';
+                        dayNumberClass = 'day-number font-bold text-lg sm:text-xl text-white';
                     }
                 } else if (isWeekend) {
-                    cellClass += 'bg-slate-700/50 text-slate-200 border border-slate-600/50';
-                    dayNumberClass += ' text-slate-200';
-                } else {
-                    cellClass += 'bg-slate-800/30 text-white border border-slate-700/30 hover:bg-slate-700/50';
-                    dayNumberClass += ' text-white';
+                    cellClass += 'bg-slate-100 text-slate-700 border border-slate-200';
+                    dayNumberClass = 'day-number font-bold text-lg sm:text-xl text-slate-700';
                 }
 
                 const cell = document.createElement('div');
@@ -324,7 +315,7 @@
 
                 if (holiday) {
                     const holidayText = document.createElement('div');
-                    holidayText.className = 'holiday-text mt-1 leading-tight font-medium';
+                    holidayText.className = 'holiday-text mt-1 leading-tight font-medium text-white';
                     holidayText.textContent = holiday.name;
                     cell.appendChild(holidayText);
                 }
@@ -345,11 +336,11 @@
 
                 let colorClass, icon, border;
                 if (holiday.type === 'national') {
-                    colorClass = 'bg-red-500/10 border-red-500/30 hover:bg-red-500/20';
+                    colorClass = 'bg-red-50 border-red-200 hover:bg-red-100';
                     icon = '🔴';
                     border = 'border-l-4 border-l-red-500';
                 } else {
-                    colorClass = 'bg-orange-500/10 border-orange-500/30 hover:bg-orange-500/20';
+                    colorClass = 'bg-orange-50 border-orange-200 hover:bg-orange-100';
                     icon = '🟠';
                     border = 'border-l-4 border-l-orange-500';
                 }
@@ -359,8 +350,8 @@
                     <div class="flex items-start gap-3">
                         <span class="text-lg flex-shrink-0">${icon}</span>
                         <div class="flex-1 min-w-0">
-                            <div class="font-semibold text-white text-sm sm:text-base truncate">${holiday.name}</div>
-                            <div class="text-xs sm:text-sm text-purple-200 mt-1 flex items-center gap-2">
+                            <div class="font-semibold text-slate-900 text-sm sm:text-base truncate">${holiday.name}</div>
+                            <div class="text-xs sm:text-sm text-slate-600 mt-1 flex items-center gap-2">
                                 <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                                 </svg>
@@ -376,196 +367,6 @@
         function calculateStats() {
             let national = 0, shared = 0, weekends = 0;
             let longestStreak = 0, currentStreak = 0;
-            let prevDate = null;
-
-            // Count holidays and weekends for 2026
-            for (let month = 0; month < 12; month++) {
-                const daysInMonth = new Date(2026, month + 1, 0).getDate();
-                for (let day = 1; day <= daysInMonth; day++) {
-                    const dateStr = `2026-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-                    const dateObj = new Date(2026, month, day);
-                    const isWeekend = dateObj.getDay() === 0 || dateObj.getDay() === 6;
-                    const holiday = holidayMap[dateStr];
-
-                    if (holiday) {
-                        if (holiday.type === 'national') national++;
-                        else shared++;
-                    }
-
-                    if (isWeekend || holiday) {
-                        currentStreak++;
-                    } else {
-                        if (currentStreak > longestStreak) {
-                            longestStreak = currentStreak;
-                        }
-                        currentStreak = 0;
-                    }
-                }
-            }
-
-            // Count total weekends in 2026
-            for (let day = 1; day <= 365; day++) {
-                const date = new Date(2026, 0, day);
-                if (date.getDay() === 0 || date.getDay() === 6) weekends++;
-            }
-
-            document.getElementById('totalHolidays').textContent = national;
-            document.getElementById('totalShared').textContent = shared;
-            document.getElementById('totalWeekends').textContent = weekends;
-            document.getElementById('longestBreak').textContent = longestStreak;
-        }
-
-        // Event listeners
-        document.getElementById('prevMonth').addEventListener('click', () => {
-            currentDate.setMonth(currentDate.getMonth() - 1);
-            renderCalendar();
-        });
-
-        document.getElementById('nextMonth').addEventListener('click', () => {
-            currentDate.setMonth(currentDate.getMonth() + 1);
-            renderCalendar();
-        });
-
-        // Initial render
-        renderCalendar();
-        renderHolidayList();
-        calculateStats();
-    </script>
-</body>
-</html>
-
-    <script>
-        // Data hari libur 2026 dari API
-        const holidays = [
-            {date: '2026-01-01', name: 'Tahun Baru Masehi', type: 'national'},
-            {date: '2026-01-16', name: 'Isra Mikraj Nabi Muhammad SAW', type: 'national'},
-            {date: '2026-01-17', name: 'Hari Siwa Ratri', type: 'shared'},
-            {date: '2026-02-17', name: 'Tahun Baru Imlek 2577 Kongzili', type: 'national'},
-            {date: '2026-03-19', name: 'Hari Raya Nyepi', type: 'national'},
-            {date: '2026-03-20', name: 'Hari Raya Idul Fitri 1447 Hijriyah', type: 'national'},
-            {date: '2026-03-21', name: 'Hari Raya Idul Fitri 1447 Hijriyah', type: 'national'},
-            {date: '2026-04-03', name: 'Wafat Isa Al Masih', type: 'national'},
-            {date: '2026-04-04', name: 'Hari Saraswati', type: 'shared'},
-            {date: '2026-05-01', name: 'Hari Buruh Internasional', type: 'national'},
-            {date: '2026-05-14', name: 'Kenaikan Isa Al Masih', type: 'national'},
-            {date: '2026-05-27', name: 'Hari Raya Idul Adha 1447 Hijriyah', type: 'national'},
-            {date: '2026-05-31', name: 'Hari Raya Waisak 2570', type: 'national'},
-            {date: '2026-06-01', name: 'Hari Lahirnya Pancasila', type: 'national'},
-            {date: '2026-06-16', name: 'Tahun Baru Islam 1448 Hijriyah / Penampahan Galungan', type: 'national'},
-            {date: '2026-06-17', name: 'Hari Raya Galungan', type: 'shared'},
-            {date: '2026-06-18', name: 'Umanis Galungan', type: 'shared'},
-            {date: '2026-06-27', name: 'Hari Raya Kuningan', type: 'shared'},
-            {date: '2026-08-17', name: 'Hari Proklamasi Kemerdekaan RI', type: 'national'},
-            {date: '2026-08-25', name: 'Maulid Nabi Muhammad SAW', type: 'national'},
-            {date: '2026-10-31', name: 'Hari Saraswati', type: 'shared'},
-            {date: '2026-12-25', name: 'Hari Raya Natal', type: 'national'}
-        ];
-
-        // Convert to map for easy lookup
-        const holidayMap = {};
-        holidays.forEach(h => {
-            holidayMap[h.date] = h;
-        });
-
-        let currentDate = new Date(2026, 0); // January 2026
-
-        function renderCalendar() {
-            const year = currentDate.getFullYear();
-            const month = currentDate.getMonth();
-
-            // Update month display
-            const monthNames = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
-                               'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
-            document.getElementById('currentMonth').textContent = `${monthNames[month]} ${year}`;
-
-            // Calculate first day of month and total days
-            const firstDay = new Date(year, month, 1).getDay(); // 0=Sun, 1=Mon, ..., 6=Sat
-            const daysInMonth = new Date(year, month + 1, 0).getDate();
-
-            // Clear grid
-            const grid = document.getElementById('calendarGrid');
-            grid.innerHTML = '';
-
-            // Adjust for Monday start: Sunday (0) becomes 7, Monday (1) becomes 1, etc.
-            let startOffset = firstDay === 0 ? 7 : firstDay;
-
-            // Add empty cells for days before first day (Monday start)
-            for (let i = 1; i < startOffset; i++) {
-                const emptyCell = document.createElement('div');
-                emptyCell.className = 'h-24 bg-gray-50';
-                grid.appendChild(emptyCell);
-            }
-
-            // Add days
-            for (let day = 1; day <= daysInMonth; day++) {
-                const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-                const dateObj = new Date(year, month, day);
-                const dayOfWeek = dateObj.getDay();
-                const isWeekend = dayOfWeek === 0 || dayOfWeek === 6; // Sunday or Saturday
-                const holiday = holidayMap[dateStr];
-
-                let cellClass = 'h-24 p-2 border border-gray-200 relative ';
-                let dayNumberClass = 'day-number font-bold text-lg';
-                
-                if (holiday) {
-                    if (holiday.type === 'national') {
-                        cellClass += 'bg-red-600 text-white font-semibold border-2 border-red-700';
-                        dayNumberClass += ' text-white';
-                    } else {
-                        cellClass += 'bg-orange-500 text-white font-semibold border-2 border-orange-600';
-                        dayNumberClass += ' text-white';
-                    }
-                } else if (isWeekend) {
-                    cellClass += 'bg-red-50 text-red-700 font-medium';
-                    dayNumberClass += ' text-red-700';
-                } else {
-                    cellClass += 'bg-white text-gray-800';
-                }
-
-                const cell = document.createElement('div');
-                cell.className = cellClass;
-
-                const dayNum = document.createElement('div');
-                dayNum.className = dayNumberClass;
-                dayNum.textContent = day;
-                cell.appendChild(dayNum);
-
-                if (holiday) {
-                    const holidayText = document.createElement('div');
-                    holidayText.className = 'text-xs mt-1 leading-tight';
-                    holidayText.textContent = holiday.name;
-                    cell.appendChild(holidayText);
-                }
-
-                grid.appendChild(cell);
-            }
-        }
-
-        function renderHolidayList() {
-            const list = document.getElementById('holidayList');
-            list.innerHTML = '';
-
-            holidays.forEach(holiday => {
-                const item = document.createElement('div');
-                const date = new Date(holiday.date);
-                const dayName = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'][date.getDay()];
-                const dateFormatted = `${date.getDate()} ${['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'][date.getMonth()]} ${date.getFullYear()}`;
-
-                let colorClass = holiday.type === 'national' ? 'bg-red-50 border-red-200' : 'bg-orange-50 border-orange-200';
-
-                item.className = `p-2 rounded border ${colorClass}`;
-                item.innerHTML = `
-                    <div class="font-semibold text-gray-800">${holiday.name}</div>
-                    <div class="text-xs text-gray-600">${dateFormatted} (${dayName})</div>
-                `;
-                list.appendChild(item);
-            });
-        }
-
-        function calculateStats() {
-            let national = 0, shared = 0, weekends = 0;
-            let longestStreak = 0, currentStreak = 0;
-            let prevDate = null;
 
             // Count holidays and weekends for 2026
             for (let month = 0; month < 12; month++) {
