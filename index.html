@@ -252,7 +252,10 @@
             holidayMap[h.date] = h;
         });
 
-        let currentDate = new Date(2026, 0); // January 2026
+        // Show current month on load
+        const today = new Date();
+        const todayStr = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
+        let currentDate = new Date(today.getFullYear(), today.getMonth(), 1);
 
         function renderCalendar() {
             const year = currentDate.getFullYear();
@@ -289,8 +292,13 @@
                 const isWeekend = dayOfWeek === 0 || dayOfWeek === 6; // Sunday or Saturday
                 const holiday = holidayMap[dateStr];
 
+                const isToday = dateStr === todayStr;
                 let cellClass = 'calendar-day p-2 sm:p-3 border border-slate-200 rounded-lg relative bg-white ';
                 let dayNumberClass = 'day-number font-bold text-lg sm:text-xl text-slate-900';
+                
+                if (isToday) {
+                    cellClass += 'ring-2 ring-primary-500 ring-offset-2';
+                }
                 
                 if (holiday) {
                     if (holiday.type === 'national') {
@@ -307,6 +315,14 @@
 
                 const cell = document.createElement('div');
                 cell.className = cellClass;
+
+                // Add "Today" badge if this is today
+                if (isToday) {
+                    const todayBadge = document.createElement('div');
+                    todayBadge.className = 'absolute top-1 right-1 bg-primary-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full shadow-sm';
+                    todayBadge.textContent = 'Today';
+                    cell.appendChild(todayBadge);
+                }
 
                 const dayNum = document.createElement('div');
                 dayNum.className = dayNumberClass;
@@ -327,8 +343,12 @@
         function renderHolidayList() {
             const list = document.getElementById('holidayList');
             list.innerHTML = '';
+            const currentYear = currentDate.getFullYear();
 
             holidays.forEach(holiday => {
+                // Only show holidays for current year
+                if (!holiday.date.startsWith(currentYear.toString())) return;
+                
                 const item = document.createElement('div');
                 const date = new Date(holiday.date);
                 const dayName = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'][date.getDay()];
@@ -365,15 +385,16 @@
         }
 
         function calculateStats() {
+            const year = currentDate.getFullYear();
             let national = 0, shared = 0, weekends = 0;
             let longestStreak = 0, currentStreak = 0;
 
-            // Count holidays and weekends for 2026
+            // Count holidays and weekends for current year
             for (let month = 0; month < 12; month++) {
-                const daysInMonth = new Date(2026, month + 1, 0).getDate();
+                const daysInMonth = new Date(year, month + 1, 0).getDate();
                 for (let day = 1; day <= daysInMonth; day++) {
-                    const dateStr = `2026-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-                    const dateObj = new Date(2026, month, day);
+                    const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+                    const dateObj = new Date(year, month, day);
                     const isWeekend = dateObj.getDay() === 0 || dateObj.getDay() === 6;
                     const holiday = holidayMap[dateStr];
 
@@ -393,10 +414,11 @@
                 }
             }
 
-            // Count total weekends in 2026
-            for (let day = 1; day <= 365; day++) {
-                const date = new Date(2026, 0, day);
-                if (date.getDay() === 0 || date.getDay() === 6) weekends++;
+            // Count total weekends in current year
+            const startOfYear = new Date(year, 0, 1);
+            const endOfYear = new Date(year, 11, 31);
+            for (let d = new Date(startOfYear); d <= endOfYear; d.setDate(d.getDate() + 1)) {
+                if (d.getDay() === 0 || d.getDay() === 6) weekends++;
             }
 
             document.getElementById('totalHolidays').textContent = national;
